@@ -48,7 +48,7 @@ new file mode 100644
 index 0000000..74cde5e
 --- /dev/null
 +++ b/lib/sqlalchemy/dialects/oracle/frontier.py
-@@ -0,0 +1,52 @@
+@@ -0,0 +1,50 @@
 +# oracle/frontier.py
 +# Copyright (C) 2005-2013 the SQLAlchemy authors and contributors <see AUTHORS file>
 +#
@@ -77,15 +77,13 @@ index 0000000..74cde5e
 +            if getattr(table, "schema", None):
 +                ret = self.preparer.quote_schema(table.schema,
 +                                table.quote_schema) + \
-+                                "." + self.preparer.quote(table.name,
-+                                                table.quote)
++                                "." + table.name
 +            elif self.dialect.default_schema_name:
 +                ret = self.preparer.quote_schema(self.dialect.default_schema_name,
 +                                table.quote_schema) + \
-+                                "." + self.preparer.quote(table.name,
-+                                                table.quote)
++                                "." + table.name
 +            else:
-+                ret = self.preparer.quote(table.name, table.quote)
++                ret = table.name
 +            if fromhints and table in fromhints:
 +                ret = self.format_from_hint_text(ret, table,
 +                                    fromhints[table], iscrud)
